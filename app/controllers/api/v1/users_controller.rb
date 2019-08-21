@@ -20,21 +20,22 @@ class Api::V1::UsersController < ApplicationController
   #     render json: { errors: user.errors }, status: 422
   #   end
   # end
-#----------------------------------------
-def create
-  @event = User.new(event_params)
+  #----------------------------------------
+  def create
+    user = User.new(event_params)
 
-  respond_to do |format|
-    if user.save
-      format.html { redirect_to user, notice: "Event was successfully created." }
-      format.json { render :show, status: :created, location: user }
-    else
-      format.html { render :new }
-      format.json { render json: user.errors, status: :unprocessable_entity }
+    respond_to do |format|
+      if user.save
+        format.html { redirect_to user, notice: "Event was successfully created." }
+        format.json { render :show, status: :created, location: user }
+      else
+        format.html { render :new }
+        format.json { render json: user.errors, status: :unprocessable_entity }
+      end
     end
   end
-end
-#==============================================
+
+  #==============================================
   private
 
   def user_params
