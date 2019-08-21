@@ -12,7 +12,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def create
-    user = User.create!(user_params)
+    user = User.new(user_params)
     # if the user is saved successfully than respond with json data and status code 201
     if user.save
       render json: user, status: 201
